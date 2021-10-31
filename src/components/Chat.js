@@ -33,7 +33,7 @@ function Chat() {
 
     return (
         <>
-            <div style={{display:'flex',flexDirection:'column-reverse'}}>
+            <div style={{display:'flex',flexDirection:'column'}}>
                 {messages.map((message,id)=>{
                     return (<><p 
                         style={{width:'40vh', marginLeft: message.uid==currentUser.uid? 'auto':'0'}} key={id}>
