@@ -25,6 +25,7 @@ function Chat() {
             createdAt: serverTimestamp(),
             username: currentUser.displayName,
             photoURL: currentUser.photoURL,
+            email: currentUser.email
           });
 
         messageInput.current.value = ""
@@ -37,7 +38,7 @@ function Chat() {
                 {messages.map((message,id)=>{
                     return (<><p 
                         style={{width:'40vh', marginLeft: message.uid==currentUser.uid? 'auto':'0'}} key={id}>
-                        {message.text}  Użytkownik:<span style={{fontSize:'15px'}}>{message.username}</span></p></>)
+                        {message.text}  Użytkownik:<span style={{fontSize:'15px'}}>{message.username || message.email}</span></p></>)
                 })}
                 
             </div>
