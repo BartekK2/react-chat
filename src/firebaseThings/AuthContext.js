@@ -66,7 +66,6 @@ export function AuthProvider({ children }) {
   
   function facebookSignInWithPopUp(){
     signInWithPopup(auth, facebookProvider);
-    console.log(currentUser)
   }
   
   function facebookSignInWithRedirect(){
