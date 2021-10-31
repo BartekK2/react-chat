@@ -61,7 +61,7 @@ function LoginForm() {
 
     return (
         <>
-            {currentUser&&<Redirect to="/" />}
+            {currentUser&&<Redirect to="/react-chat" />}
             <Grid
                 container
                 direction="column"
