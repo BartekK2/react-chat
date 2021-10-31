@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {db} from "../firebaseThings/firebaseSetup"
-import { collection, onSnapshot, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, onSnapshot, addDoc, serverTimestamp, query, orderBy, } from "firebase/firestore";
 import { TextField, Button } from '@mui/material';
 import {useAuth} from "../firebaseThings/AuthContext"
 import {auth} from "../firebaseThings/firebaseSetup"
@@ -11,7 +11,7 @@ function Chat() {
     const {currentUser} = useAuth()
 
     useEffect(() => {
-        onSnapshot(collection(db, "messages"), (doc) => {
+        onSnapshot(query(collection(db, "messages"),orderBy("createdAt")), (doc) => {
             setMessages(doc.docs.map(doc => doc.data()));
         });
     },[])
