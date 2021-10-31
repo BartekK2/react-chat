@@ -17,6 +17,9 @@ function App() {
                 <PrivateRoute exact path="/" exact component={Dashboard} />
                 <Route exact path="/signup" component={RegisterForm} />
                 <Route exact path="/login" component={LoginForm} />
+                <Route exact path="/react-chat/login" component={LoginForm} />
+                <Route exact path="/react-chat/react-chat/login" component={LoginForm} />
+
               </Switch>
             </AuthProvider>
           </ThemeProvider>
