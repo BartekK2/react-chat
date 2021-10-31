@@ -17,6 +17,8 @@ function App() {
                 <PrivateRoute path="/" exact component={Dashboard} />
                 <Route path="/signup" component={RegisterForm} />
                 <Route path="/login" component={LoginForm} />
+                <Route path="/dashboard" component={Dashboard} />
+
               </Switch>
             </AuthProvider>
           </ThemeProvider>
