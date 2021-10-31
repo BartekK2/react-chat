@@ -37,7 +37,7 @@ function Chat() {
                 {messages.map((message,id)=>{
                     return (<><p 
                         style={{width:'40vh', marginLeft: message.uid==currentUser.uid? 'auto':'0'}} key={id}>
-                        {message.text} Użytkownik:<span style={{fontSize:'15px'}}>{message.username}</span></p></>)
+                        {message.text}  Użytkownik:<span style={{fontSize:'15px'}}>{message.username}</span></p></>)
                 })}
                 
             </div>
