@@ -29,12 +29,14 @@ function Chat() {
           });
 
         messageInput.current.value = ""
+        document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+
     }
 
 
     return (
         <>
-            <div style={{display:'flex',flexDirection:'column'}}>
+            <div id="chat" style={{display:'flex',flexDirection:'column',height:'70vh',overflowY:'auto'}}>
                 {messages.map((message,id)=>{
                     return (<><p 
                         style={{width:'40vh', marginLeft: message.uid==currentUser.uid? 'auto':'0'}} key={id}>
