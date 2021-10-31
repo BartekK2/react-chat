@@ -61,7 +61,7 @@ function LoginForm() {
 
     return (
         <>
-            {currentUser&&<Redirect to="/dashboard" />}
+            {currentUser&&<Redirect to="/" />}
             <Grid
                 container
                 direction="column"
