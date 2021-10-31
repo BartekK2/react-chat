@@ -10,11 +10,11 @@ function App() {
   return (
     <>
       <CssBaseline></CssBaseline>
-      <Router>
+      <Router basename="/react-chat/">
           <ThemeProvider>
             <AuthProvider>
               <Switch>
-                <PrivateRoute path="/react-chat/" exact component={Dashboard} />
+                <PrivateRoute path="/" exact component={Dashboard} />
                 <Route exact path="/signup" component={RegisterForm} />
                 <Route exact path="/login" component={LoginForm} />
               </Switch>
