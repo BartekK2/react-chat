@@ -24,7 +24,7 @@ function Dashboard() {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" component="div">
+                <Typography variant="h6" component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
                     Messenger
                 </Typography>
                 <Grid container spacing={2} justifyContent="flex-end" sx={{flexGrow: 2}}>

@@ -3,15 +3,15 @@ import {db} from "../firebaseThings/firebaseSetup"
 import { collection, onSnapshot, addDoc, serverTimestamp, query, orderBy, } from "firebase/firestore";
 import { TextField, Button, IconButton} from '@mui/material';
 import {useAuth} from "../firebaseThings/AuthContext"
-import {auth} from "../firebaseThings/firebaseSetup"
 import {Box} from "@mui/material"
 import { green } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useMediaQuery } from 'react-responsive'
 
 function Chat() {
     const [messages, setMessages] = useState([])
     const messageInput = useRef("");
     const {currentUser} = useAuth()
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 
     useEffect(() => {
         onSnapshot(query(collection(db, "messages"),orderBy("createdAt")), (doc) => {
@@ -64,7 +64,7 @@ function Chat() {
                 })}
                 
             </div>
-            <div style={{display:'flex',width:'60%',marginLeft:'auto',marginRight:'auto',justifyContent:'space-evenly',marginTop:'30px',}}>
+            <div style={{display:'flex',width: isTabletOrMobile? '100%':'60%',marginLeft:'auto',marginRight:'auto',justifyContent:'space-evenly',marginTop:'30px',}}>
             <TextField inputRef={messageInput}/>
             <Button variant="contained" onClick={(e)=>submitMessage(e)}>Wyślij</Button>
             <Button variant="contained" onClick={(e)=>submitMessage(e,"💗")}
