@@ -1,5 +1,5 @@
 {
-  "homepage": "https://bartekk2.github.io/",
+  "homepage": "https://bartekk2.github.io/react-chat",
   "name": "socialapp",
   "version": "0.1.0",
   "private": true,
@@ -27,7 +27,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "gitdeploy": "git add . && git commit -m \"path changes\" && git push -u origin main && npm run deploy"
   },
   "eslintConfig": {
     "extends": [
