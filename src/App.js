@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <CssBaseline></CssBaseline>
-      <Router>
+      <Router basename="/react-chat">
           <ThemeProvider>
             <AuthProvider>
               <Switch>
