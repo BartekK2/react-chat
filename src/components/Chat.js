@@ -1,9 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {db} from "../firebaseThings/firebaseSetup"
 import { collection, onSnapshot, addDoc, serverTimestamp, query, orderBy, } from "firebase/firestore";
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, IconButton} from '@mui/material';
 import {useAuth} from "../firebaseThings/AuthContext"
 import {auth} from "../firebaseThings/firebaseSetup"
+import {Box} from "@mui/material"
+import { green } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Chat() {
     const [messages, setMessages] = useState([])
@@ -16,11 +19,11 @@ function Chat() {
         });
     },[])
 
-    async function submitMessage(e){
+    async function submitMessage(e, message=messageInput.current.value){
         e.preventDefault()
 
         await addDoc(collection(db, "messages"), {
-            text: messageInput.current.value,
+            text: message,
             uid: currentUser.uid,
             createdAt: serverTimestamp(),
             username: currentUser.displayName,
@@ -33,20 +36,40 @@ function Chat() {
 
     }
 
+    const Message = (props) => {
+        const {id, message} = props;
+        return (
+            <>
+                <Box style={{marginTop:'20px',marginRight:'10px',marginLeft: message.uid==currentUser.uid? 'auto':'10px',width:'40vh', }}>
+                    <span style={{fontSize:'15px'}}>{message.username || message.email}</span>
+                    <Box key={id}
+                        style={{
+                            
+                            background:message.uid==currentUser.uid? green[400]:'#ddd',
+                            padding:'10px',  borderRadius:"20px"
+                        }}
+                    >
+                        {message.text}
+                    </Box>
+                </Box>
+            </>
+        )
+    }
 
     return (
         <>
             <div id="chat" style={{display:'flex',flexDirection:'column',height:'70vh',overflowY:'auto'}}>
                 {messages.map((message,id)=>{
-                    return (<><p 
-                        style={{width:'40vh', marginLeft: message.uid==currentUser.uid? 'auto':'0'}} key={id}>
-                        {message.text}  Użytkownik:<span style={{fontSize:'15px'}}>{message.username || message.email}</span></p></>)
+                    return (<><Message id={id} message={message}></Message></>)
                 })}
                 
             </div>
-            <div style={{display:'flex',justifyContent:'center',marginTop:'30px'}}>
+            <div style={{display:'flex',width:'60%',marginLeft:'auto',marginRight:'auto',justifyContent:'space-evenly',marginTop:'30px',}}>
             <TextField inputRef={messageInput}/>
-            <Button onClick={submitMessage}>Wyślij</Button></div>
+            <Button variant="contained" onClick={(e)=>submitMessage(e)}>Wyślij</Button>
+            <Button variant="contained" onClick={(e)=>submitMessage(e,"💗")}
+                sx={{borderRadius:'100%',padding:'auto',fontSize:'20px'}}>💗</Button>
+            </div>
         </>
         
     )
