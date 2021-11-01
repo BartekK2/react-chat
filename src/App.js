@@ -4,7 +4,7 @@ import Dashboard from "./components/Dashboard";
 import NotFound from "./components/NotFound"
 import { AuthProvider } from "./firebaseThings/AuthContext"
 import { CssBaseline } from "@mui/material";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, HashRouter} from "react-router-dom"
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./ThemeProvider";
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <CssBaseline></CssBaseline>
-      <Router basename="/react-chat">
+      <HashRouter basename="/react-chat">
           <ThemeProvider>
             <AuthProvider>
               <Switch>
@@ -28,7 +28,7 @@ function App() {
               </Switch>
             </AuthProvider>
           </ThemeProvider>
-        </Router>
+        </HashRouter>
     </>
   );
 }
