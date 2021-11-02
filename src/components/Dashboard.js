@@ -7,12 +7,14 @@ import Chat from './Chat';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail'
+import { Redirect } from 'react-router';
 
 function Dashboard() {
-    const {logout, currentUser} = useAuth();
+    const {logout, currentUser, exists} = useAuth();
 
     return (
         <div>
+            {exists || <Redirect to="/info" />}
             <AppBar position="static">
                 <Toolbar >
                 <IconButton

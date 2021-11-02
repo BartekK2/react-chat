@@ -10,6 +10,9 @@ import {
 
 } from "firebase/auth";
 
+import { doc, setDoc, getDoc } from "firebase/firestore"; 
+import {db} from "../firebaseThings/firebaseSetup";
+
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -72,6 +75,17 @@ export function AuthProvider({ children }) {
     signInWithRedirect(auth, facebookProvider);
   }
 
+  const [exists, setExists] = useState(false)
+
+  const isUserInfoAlreadyExists = async () =>{
+    if(currentUser !== undefined){
+      const x = await getDoc(doc(db, "users", currentUser.email));
+      console.log(currentUser)
+      setExists(x.exists());
+      console.log(exists)
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user)
@@ -81,6 +95,10 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
+  useEffect(() => {
+    isUserInfoAlreadyExists()
+  })
+
   const value = {
     currentUser,
     login,
@@ -88,6 +106,7 @@ export function AuthProvider({ children }) {
     logout,
     resetPassword,
     updateUserEmail,
+    exists,
     updateUserPassword,
     setAuthPersistence,
     getPersistence,

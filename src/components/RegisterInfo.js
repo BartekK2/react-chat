@@ -9,7 +9,7 @@ import FormGroup from '@mui/material/FormGroup';
 
 
 function RegisterInfo() {
-    const {currentUser} = useAuth();
+    const {currentUser, exists} = useAuth();
     const reducer = (state, action)=>{
         switch (action.type) {
             case 'wiek':
@@ -25,12 +25,7 @@ function RegisterInfo() {
     const [state, dispatch] = useReducer(reducer, {wiek: 0, info:"", plec:"F"});
 
     const [error, setError] = useState("")
-    const [exists, setExists] = useState(false)
 
-    const isUserInfoAlreadyExists = async () =>{
-        const x = await getDoc(doc(db, "users", currentUser.email));
-        setExists(x.exists());
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -41,7 +36,6 @@ function RegisterInfo() {
                 info: state.info,
                 plec: state.plec
             });
-            isUserInfoAlreadyExists()
         }catch(error){
             setError(error)
         }
