@@ -40,13 +40,16 @@ function Chat() {
         const {id, message} = props;
         return (
             <>
-                <Box style={{marginTop:'20px',marginRight:'10px',marginLeft: message.uid==currentUser.uid? 'auto':'10px',width:'40vh', }}>
-                    <span style={{fontSize:'15px'}}>{message.username || message.email}</span>
+                <Box style={{marginTop:'20px',marginRight:'10px',marginLeft: message.uid==currentUser.uid? 'auto':'10px',maxWidth:'40vh', }}>
+                    <span style={{fontSize:'15px'}}>{message.username || message.email} </span>
+                    <span>
+                        {message.createdAt && new Date(message.createdAt.seconds*1000).toJSON().slice(11,19).replace(/-/g,'/')}
+                    </span>
+
                     <Box key={id}
                         style={{
-                            
+                            overflowWrap:'break-word', padding:'10px',  borderRadius:"20px",
                             background:message.uid==currentUser.uid? green[400]:'#ddd',
-                            padding:'10px',  borderRadius:"20px"
                         }}
                     >
                         {message.text}

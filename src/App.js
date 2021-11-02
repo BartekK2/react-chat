@@ -7,6 +7,8 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./ThemeProvider";
+import RegisterInfo from "./components/RegisterInfo";
+
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
                 <Route exact path="/login" component={LoginForm} />
                 <Route exact path="/react-chat/login" component={LoginForm} />
                 <Route exact path="/react-chat/react-chat/login" component={LoginForm} />
+                <Route exact path="/signup" component={RegisterForm} />
+                <Route exact path="/info" component={RegisterInfo} />
+
                 <Route component={NotFound}></Route>
 
               </Switch>

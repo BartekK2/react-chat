@@ -37,6 +37,7 @@ function RegisterForm() {
         if(!(checkboxRef.current.checked)) throw new CustomError('Nie zgodziłeś sie na regulamin');
         if(password!=password2) throw new CustomError("Hasła sie nie zgadzają");
         await signup(email, password)
+
       } catch(e) {
         setError(e.code)
       }
@@ -60,21 +61,21 @@ function RegisterForm() {
             >     
                 <Grid item>
                     <TextField error={unvalid} onChange={(e) => setEmail(e.target.value)} 
-                        label="Email" variant="outlined" helperText={unvalid && "To nie wygląda jak email"}/>
+                        label="Email" required variant="outlined" helperText={unvalid && "To nie wygląda jak email"}/>
                 </Grid>
 
                 <Grid item>
                     <TextField error={password.length<8} onChange={(e) => setPassword(e.target.value)} type="password" 
-                    label="Hasło" variant="outlined" helperText={(password.length<8) && "Hasło musi być dłuższe"} />
+                    label="Hasło" required variant="outlined" helperText={(password.length<8) && "Hasło musi być dłuższe"} />
                 </Grid>
 
                 <Grid item>
                     <TextField error={password2.length<8} onChange={(e) => setPassword2(e.target.value)} type="password" 
-                    label="Powtórz hasło" variant="outlined" helperText={(password2.length<8) && "Hasło musi być dłuższe"}/>
+                    label="Powtórz hasło" required variant="outlined" helperText={(password2.length<8) && "Hasło musi być dłuższe"}/>
                 </Grid>
 
                 <Grid item>
-                    <Button variant="contained" disabled={loading || unvalid || password.length<8} onClick={handleSubmit}>Zarejestrujs</Button>
+                    <Button variant="contained" disabled={loading || unvalid || password.length<8} onClick={handleSubmit}>Zarejestruj się</Button>
                 </Grid>
                 <Grid item>
                     <FormGroup>
