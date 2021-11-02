@@ -9,7 +9,8 @@ import FormGroup from '@mui/material/FormGroup';
 
 
 function RegisterInfo() {
-    const {currentUser, exists} = useAuth();
+    const {currentUser, exists,isUserInfoAlreadyExists} = useAuth();
+    
     const reducer = (state, action)=>{
         switch (action.type) {
             case 'wiek':
@@ -36,6 +37,7 @@ function RegisterInfo() {
                 info: state.info,
                 plec: state.plec
             });
+            isUserInfoAlreadyExists()
         }catch(error){
             setError(error)
         }
@@ -44,6 +46,7 @@ function RegisterInfo() {
     return (
         <>
             {exists&&<Redirect to="/" />}
+            
             <Grid
                 container
                 direction="column"

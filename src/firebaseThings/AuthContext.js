@@ -100,6 +100,7 @@ export function AuthProvider({ children }) {
   })
 
   const value = {
+    isUserInfoAlreadyExists,
     currentUser,
     login,
     signup,
