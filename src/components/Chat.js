@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {db} from "../firebaseThings/firebaseSetup"
 import { collection, onSnapshot, addDoc, serverTimestamp, query, orderBy, } from "firebase/firestore";
-import { TextField, Button, IconButton} from '@mui/material';
+import { TextField, Button, IconButton, Paper} from '@mui/material';
 import {useAuth} from "../firebaseThings/AuthContext"
 import {Box} from "@mui/material"
 import { green } from '@mui/material/colors';
@@ -46,14 +46,14 @@ function Chat() {
                         {message.createdAt && new Date(message.createdAt.seconds*1000).toJSON().slice(11,19).replace(/-/g,'/')}
                     </span>
 
-                    <Box key={id}
+                    <Paper key={id}
                         style={{
                             overflowWrap:'break-word', padding:'10px',  borderRadius:"20px",
-                            background:message.uid==currentUser.uid? green[400]:'#ddd',
+                            background:message.uid==currentUser.uid && green[400],
                         }}
                     >
                         {message.text}
-                    </Box>
+                    </Paper>
                 </Box>
             </>
         )

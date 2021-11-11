@@ -45,7 +45,7 @@ function RegisterInfo() {
 
     return (
         <>
-            {exists&&<Redirect to="/" />}
+            {/* {exists&&<Redirect to="/" />} */}
             
             <Grid
                 container

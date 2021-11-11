@@ -75,13 +75,15 @@ export function AuthProvider({ children }) {
     signInWithRedirect(auth, facebookProvider);
   }
 
-  const [exists, setExists] = useState(false)
+  const [exists, setExists] = useState(undefined)
+  const [userInfo, setUserInfo] = useState(undefined)
 
   const isUserInfoAlreadyExists = async () =>{
-    if(currentUser !== undefined){
+    if(currentUser){
       const x = await getDoc(doc(db, "users", currentUser.email));
-      console.log(currentUser)
       setExists(x.exists());
+      setUserInfo(x.data());
+      console.log(userInfo)
       console.log(exists)
     }
   }
@@ -90,17 +92,17 @@ export function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user)
       setLoading(false)
+      isUserInfoAlreadyExists()
     })
 
     return unsubscribe
   }, [])
 
-  useEffect(() => {
-    isUserInfoAlreadyExists()
-  })
+
 
   const value = {
     isUserInfoAlreadyExists,
+    userInfo,
     currentUser,
     login,
     signup,

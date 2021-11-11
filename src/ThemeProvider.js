@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider as TP } from '@mui/material/styles';
-import { green, purple } from '@mui/material/colors';
+import { green, grey } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -10,6 +10,10 @@ const theme = createTheme({
     secondary: {
       main: green[300],
     },
+    background:{
+      default:grey[100],
+      paper:grey[300]
+    }
 
   },
   components:{

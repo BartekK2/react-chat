@@ -3,13 +3,13 @@ import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../firebaseThings/AuthContext"
 
 export default function PrivateRoute({ component: Component, ...rest }) {
-  const { currentUser } = useAuth()
 
   return (
     <Route
       {...rest}
-      render={props => {
-        return currentUser ? <Component {...props} /> : <Redirect to="/login" />
+      render={props => {{console.log(rest)}
+        if(rest.info===undefined) return ;
+        return rest.info ?   <Component {...props} />:<Redirect to={rest.redirectPath} />
       }}
     ></Route>
   )

@@ -37,6 +37,7 @@ function RegisterForm() {
         if(!(checkboxRef.current.checked)) throw new CustomError('Nie zgodziłeś sie na regulamin');
         if(password!=password2) throw new CustomError("Hasła sie nie zgadzają");
         await signup(email, password)
+        window.location.replace("http://localhost:3000/react-chat/info");
 
       } catch(e) {
         setError(e.code)
